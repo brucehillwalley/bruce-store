@@ -4,7 +4,8 @@ import { imageIcon } from "../helper/icons";
 const Loading = () => {
   return (
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-      <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+      {/* <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"> */}
+      <div className="card-div">
         {[0, 1, 2, 3].map((_, i) => (
           <div key={i}>
             <div className="flex items-center justify-center h-80 animate-pulse bg-gray-300 rounded ">
