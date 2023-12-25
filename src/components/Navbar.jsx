@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../assets/logo.png";
 import { closeNavbar, openNavbar, logoutIcon } from "../helper/icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import AuthProvider, { AuthContext } from "../context/AuthProvider";
 const navigation = [
   {
     title: "Home",
@@ -19,6 +20,9 @@ const navigation = [
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
+  const {logout}=useContext(AuthContext)
+  const location =useLocation()
+  console.log(location);
 
   return (
     <nav className="bg-navbarColor md:text-sm">
@@ -54,7 +58,7 @@ const Navbar = () => {
               >
                 <NavLink
                   to={item.path}
-                  className={`block hover:bg-main rounded-full py-2 px-4 hover:text-white`}
+                  className={`block hover:bg-main rounded-full py-2 px-4 hover:text-white ${location.pathname===item.path ? "underline scale-150" :""}`}
                 >
                   {item.title}
                 </NavLink>
@@ -64,6 +68,7 @@ const Navbar = () => {
           <div className="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
             <NavLink
               to="/"
+              onClick={logout}
               className="flex items-center justify-center gap-x-1 py-2 px-4 font-medium text-gray-700 hover:bg-main hover:text-white active:bg-gray-900 rounded-full md:inline-flex" 
             >
               Logout {logoutIcon}
