@@ -1,25 +1,25 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useParams,useNavigate } from "react-router-dom";
 import ErrorPage from "../components/ErrorPage";
 
-const ProductDetail = () => {
-  const { title: params } = useParams(); //dinamik routelardaki değeri yakalar. route ayarlaması yaparken ne isim verdiysek useParams ile onu yakalarız.
-  const { state, search } = useLocation();//!navigate ile taşına veriyi useLocation() hooku ile karşılyabiliyoruz. urlde yer alan parametreleri search ile yakalayabiliyoruz.
+const ProductDetailId = () => {
+  const { title:params,id } = useParams(); //dinamik routelardaki değeri yakalar. route ayarlaması yaparken ne isim verdiysek useParams ile onu yakalarız.
+  const [detail,setDetail] = useState({})
   const navigate = useNavigate();
-  console.log(search);
-  console.log(state);
-  // const getDetailData = async () => {
-  //   const {data} = await axios(`https://dummyjson.com/products/${search.split("=")[1]}`)//!url den gelen search deki değerin tek olduğunu bildiğimiz için bu şekilde id bilgisini yakaladık.Eğer url de birden fazla parametre olursa o zaman ona göre bir ayıklama yapmamız lazım.
-  //   console.log(data)
-  // }
-  // useEffect(()=>{
-  //   getDetailData()
-  // },[])
+  
+  const getDetailData = async () => {
+    const {data} = await axios(`https://dummyjson.com/products/${id}`)//!url den gelen search deki değerin tek olduğunu bildiğimiz için bu şekilde id bilgisini yakaladık.Eğer url de birden fazla parametre olursa o zaman ona göre bir ayıklama yapmamız lazım.
+    console.log(data)
+    setDetail(data)
+  }
+  useEffect(()=>{
+    getDetailData()
+  },[])
 
-  if (!state) return <ErrorPage />;
+  if (!detail?.title) return <ErrorPage />;
+  const {images,thumbnail,title,description,category,price} = detail
 
-  const { thumbnail, title, description, category, price, images } = state;
   return (
     <div className="container">
       <div className="mt-6 w-full ">
@@ -79,4 +79,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetailId;

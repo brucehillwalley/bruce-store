@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import logo from "../assets/logo.png";
 import { closeNavbar, openNavbar, logoutIcon } from "../helper/icons";
 import { NavLink, useLocation } from "react-router-dom";
-import AuthProvider, { AuthContext } from "../context/AuthProvider";
+import { AuthContext } from "../context/AuthProvider";
 const navigation = [
   {
     title: "Home",
@@ -20,8 +20,8 @@ const navigation = [
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
-  const {logout}=useContext(AuthContext)
-  const location =useLocation()
+  const { logout } = useContext(AuthContext);
+  const location = useLocation();//!useLocation hook'u, geçerli konumu bir nesne olarak döndürür. Bu nesne, routerdan gelen konum yolunu, konum parametrelerini ve konum durumunu içerir.
   console.log(location);
 
   return (
@@ -49,7 +49,11 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-        <div className={`${show ? "flex flex-col pb-2" : "hidden"} flex-1 items-center md:flex md:flex-row`}>
+        <div
+          className={`${
+            show ? "flex flex-col pb-2" : "hidden"
+          } flex-1 items-center md:flex md:flex-row`}
+        >
           <ul className="space-y-6 md:flex md:space-x-6 md:space-y-0">
             {navigation.map((item) => (
               <li
@@ -58,7 +62,9 @@ const Navbar = () => {
               >
                 <NavLink
                   to={item.path}
-                  className={`block hover:bg-main rounded-full py-2 px-4 hover:text-white ${location.pathname===item.path ? "underline scale-150" :""}`}
+                  className={`block hover:bg-main rounded-full py-2 px-4 hover:text-white ${
+                    location.pathname === item.path ? "underline scale-150" : ""
+                  }`}
                 >
                   {item.title}
                 </NavLink>
@@ -69,7 +75,7 @@ const Navbar = () => {
             <NavLink
               to="/"
               onClick={logout}
-              className="flex items-center justify-center gap-x-1 py-2 px-4 font-medium text-gray-700 hover:bg-main hover:text-white active:bg-gray-900 rounded-full md:inline-flex" 
+              className="flex items-center justify-center gap-x-1 py-2 px-4 font-medium text-gray-700 hover:bg-main hover:text-white active:bg-gray-900 rounded-full md:inline-flex"
             >
               Logout {logoutIcon}
             </NavLink>

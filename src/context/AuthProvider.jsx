@@ -13,17 +13,19 @@ const AuthProvider = ({ children }) => {
     navigate("/dashboard");
   };
 
-  const logout = ()=>{
+  const logout = () => {
     setUser(null)
-
+    // setUser({})
   }
 
-  useEffect(() => {
-    sessionStorage.setItem("user", JSON.stringify(user));
-  },[user]) //!componenentDidUpdate
+  useEffect(()=>{
+    sessionStorage.setItem("user",JSON.stringify(user))
+  },[user])//!componentDidUpdate
+
+
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login,logout }}>
       {children}
     </AuthContext.Provider>
   );
