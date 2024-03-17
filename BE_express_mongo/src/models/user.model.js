@@ -5,6 +5,7 @@
 
 const mongoose=require('mongoose')
 const passwordEncrypt = require("../helpers/passwordEncrypt");
+
 const {isEmail} = require('validator')
 
 const validateEmail = function(email) {
@@ -20,7 +21,10 @@ const userSchema = new mongoose.Schema({
         trim:true,
         unique:true,
         required:[true, "Email is required"],
-        validate:[isEmail, "Please enter a valid email"]
+        // validate:[isEmail, "Please enter a valid email *VALIDATOR*"],
+        // validate:[validateEmail, "Please enter a valid email *validateEmail func* "],
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address *REGEX match*']
+       
 
     },
     password:{
