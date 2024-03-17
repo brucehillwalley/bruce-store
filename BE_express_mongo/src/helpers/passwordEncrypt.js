@@ -8,7 +8,7 @@
 const { pbkdf2Sync } = require("node:crypto");
 
 const keyCode =
-  process.env?.SECRET_KEY || "if env is not defined_24gdfhhjsdffff";
+  process.env?.SECRET_KEY || "if env is not defined_secret_key";
 const loopCount = 10_000; // 10K
 const charCount = 32; // write 32 for 64
 const encType = "sha512";

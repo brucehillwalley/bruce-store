@@ -30,8 +30,9 @@ app.all('/', (req, res) => {
 
 
 
-
+app.use('/users', require('./src/routes/user.router'));
 app.use('/products', require('./src/routes/product.router'));
+
 
 app.use(require('./src/middlewares/errorHandler')) // aşağıda kalsın
 app.listen(PORT, () => {
