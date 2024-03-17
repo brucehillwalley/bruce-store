@@ -16,6 +16,7 @@ router
   .put(ProductCategory.update) // put patch aynı
   .patch(ProductCategory.update)
   .delete(ProductCategory.delete);
+  
 router
   .route("/")
   .get(Product.list)
