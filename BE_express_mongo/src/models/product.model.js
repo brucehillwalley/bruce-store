@@ -3,7 +3,7 @@
  STORE APP - PRODUCT MODEL
 -------------------------------------------------------*/
 const mongoose = require("mongoose");
-const {isURL} = require("validator");
+const { isURL } = require("validator");
 
 const productCategorySchema = new mongoose.Schema(
   {
@@ -60,14 +60,17 @@ const productSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    category: {
+      type: String,
+      trim: true,
+    },
     thumbnail: {
       type: String,
     },
     images: [
       {
         type: String,
-        validate: [isURL, "Please enter a valid URL"]
-      
+        validate: [isURL, "Please enter a valid URL"],
       },
     ],
     __v: Number,

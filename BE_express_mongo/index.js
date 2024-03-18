@@ -6,6 +6,7 @@
 const express = require("express");
 const app = express();
 
+
 app.use(express.json());
 
 require("dotenv").config();
@@ -38,3 +39,6 @@ app.use(require('./src/middlewares/errorHandler')) // aşağıda kalsın
 app.listen(PORT, () => {
   console.log(`Server is running on http://${HOST}:${PORT}`);
 });
+
+
+// require('./src/helpers/transferDummyData')()
