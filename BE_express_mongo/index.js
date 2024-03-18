@@ -16,6 +16,13 @@ const HOST = process.env.HOST;
 /* DB connection  */
 require('./src/configs/dbConnection');
 
+const session = require('cookie-session')
+app.use(session({
+  secret: process.env.SECRET_KEY,
+}))
+
+
+
 app.all('/', (req, res) => {
   res.send('WELCOME BRUCE STORE API ')
 })
@@ -41,4 +48,13 @@ app.listen(PORT, () => {
 });
 
 
-// require('./src/helpers/transferDummyData')()
+// to return default values of db
+const cron = require('cron');
+
+const returnDefaultValuesDB =new cron.CronJob('59 59 23 * * *', function() { //her gün 23.59.59 saatinde gerçekleşecek 
+  require('./src/helpers/transferDummyData')()
+  console.log(" DB returned default values ");
+})
+
+returnDefaultValuesDB.start();
+
