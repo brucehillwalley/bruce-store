@@ -52,9 +52,11 @@ app.listen(PORT, () => {
 const cron = require('cron');
 
 const returnDefaultValuesDB =new cron.CronJob('59 59 23 * * *', function() { //her gün 23.59.59 saatinde gerçekleşecek 
-  require('./src/helpers/transferDummyData')()
-  console.log(" DB returned default values ");
-})
 
-returnDefaultValuesDB.start();
+  require('./src/helpers/transferDummyData')() //dummy data transfer
+
+  console.log(" DB returned default values ");
+}, null, true, 'Europe/Istanbul');
+
+// https://github.com/kelektiv/node-cron/tree/main/examples
 
