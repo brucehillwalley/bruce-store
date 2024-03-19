@@ -12,8 +12,7 @@ const productCategorySchema = new mongoose.Schema(
       required: true,
       unique: true,
       trim: true,
-      // __v: Number, 
-      // gerekli değil db veriyor silineblir.
+    
     },
   },
 
@@ -76,7 +75,7 @@ const productSchema = new mongoose.Schema(
         validate: [isURL, "Please enter a valid URL"],
       },
     ],
-    // __v: Number,
+  
   },
 
   {
