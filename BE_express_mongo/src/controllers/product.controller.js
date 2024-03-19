@@ -3,7 +3,8 @@
  STORE APP - PRODUCT CONTROLLER
 -------------------------------------------------------*/
 
-require("express-async-errors");
+// require("express-async-errors"); //gerek yok index te yaz yeterli
+// 
 
 const { ProductCategory, Product } = require("../models/product.model");
 //! burada modelimizi cagirdik. ben baş harfi küçük require yaptığım için hata aldım. nasıl export ettiğine nası require ettiğine dikkat et
@@ -74,7 +75,7 @@ module.exports.Product = {
     });
   },
   read: async (req, res) => {
-    const data = await Product.find({ _id: req.params.productId });
+    const data = await Product.findOne({ _id: req.params.productId });
     res.status(202).send({
       error: false,
       data: data,
