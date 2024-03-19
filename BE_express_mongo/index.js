@@ -5,7 +5,7 @@
 
 const express = require("express");
 const app = express();
-
+require("express-async-errors"); // yukarıda kalsın
 
 app.use(express.json());
 

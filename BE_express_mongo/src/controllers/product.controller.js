@@ -37,7 +37,7 @@ module.exports.ProductCategory = {
   update: async (req, res) => {
     const data = await ProductCategory.updateOne(
       { _id: req.params.categoryId },
-      req.body
+      req.body, { runValidators: true }
     );
     const newdata = await ProductCategory.find({ _id: req.params.categoryId });
     res.status(202).send({
@@ -85,7 +85,7 @@ module.exports.Product = {
   update: async (req, res) => {
     const data = await Product.updateOne(
       { _id: req.params.productId },
-      req.body
+      req.body, {runValidators:true}
     );
     const newdata = await Product.find({ _id: req.params.productId });
     res.status(202).send({
