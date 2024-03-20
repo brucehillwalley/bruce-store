@@ -11,6 +11,7 @@ const { Product, ProductCategory } = require("../models/product.model");
 let dummyCategories = [];
 let dummyProducts = [];
 
+
 async function getProducts() {
   const { data } = await axios(`https://dummyjson.com/products?limit=1`);
   console.log(data);

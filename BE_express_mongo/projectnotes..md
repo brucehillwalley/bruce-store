@@ -1,0 +1,1 @@
+- https://stackoverflow.com/questions/59694309/for-await-of-vs-promise-all
