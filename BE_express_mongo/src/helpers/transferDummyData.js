@@ -81,8 +81,10 @@ const populateUsers=async()=>{
 
   
     // await User.create({...dummyUsers[0]});
-
+    
 }
+
+//? ADMIN USER ADDING METHOD
 
 
 

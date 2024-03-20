@@ -55,7 +55,7 @@ app.listen(PORT, () => {
 // to return default values of db once in a day
 const cron = require('cron');
 
-const returnDefaultValuesDB =new cron.CronJob('20 5 3 * * *', function() { //everyday at 23.59.59 
+const returnDefaultValuesDB =new cron.CronJob('59 59 23 * * *', function() { //everyday at 23.59.59 
 
   require('./src/helpers/transferDummyData')() //dummy data transfer
 
