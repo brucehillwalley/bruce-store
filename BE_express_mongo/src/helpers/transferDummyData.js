@@ -2,7 +2,7 @@
 
 const axios = require("axios");
 const { Product, ProductCategory } = require("../models/product.model");
-const  User  = require("../models/user.model");
+const User = require("../models/user.model");
 
 // https://dummyjson.com/products/categories
 // https://dummyjson.com/products?limit=100
@@ -11,7 +11,6 @@ const  User  = require("../models/user.model");
 let dummyCategories = [];
 let dummyProducts = [];
 let dummyUsers = [];
-
 
 //? CATEGORY METHODS
 async function getProductCategories() {
@@ -40,8 +39,6 @@ async function createProductCategories() {
   await Promise.all(categoryPromises);
 }
 
-
-
 //? PRODUCT METHODS
 
 async function getProducts() {
@@ -49,68 +46,68 @@ async function getProducts() {
   return data.products;
 }
 
-
-
 async function createProducts() {
-    const productPromises = dummyProducts.map(async (product) => {
-        await Product.create({ ...product, "categoryId": (await ProductCategory.findOne({ name: product.category }))._id });
-      });
-    
-      await Promise.all(productPromises);
+  const productPromises = dummyProducts.map(async (product) => {
+    await Product.create({
+      ...product,
+      categoryId: (
+        await ProductCategory.findOne({ name: product.category })
+      )._id,
+    });
+  });
+
+  await Promise.all(productPromises);
 }
 async function populateProducts() {
-    dummyProducts = await getProducts();
-    await createProducts();
-  }
+  dummyProducts = await getProducts();
+  await createProducts();
+}
 
 //? USER METHODS
 
 const getDummyUsers = async () => {
-  const {data} = await axios.get(`https://dummyjson.com/users`);
+  const { data } = await axios.get(`https://dummyjson.com/users`);
   console.log(data.users);
   return data.users;
+};
+
+// {"email":"admin@aa.com","pass":"admin"}
+
+//? 1.YÖNTEM - DUMMY USER DATA KAYDI
+// const populateUsers=async()=>{
+// (await getDummyUsers()).forEach(async (user) => {
+//   await User.create({...user});
+// })
+
+
+//? 2.YÖNTEM - DUMMY USER DATA VE ADDMIN KAYDI
+const populateUsers = async () => {
+  dummyUsers = await getDummyUsers();
+  await User.insertMany([
+    { email: "admin@aa.com", password: "admin", firstName: "Admin",
+    lastName: "Adminson" },
+    ...(dummyUsers),
+  ]);
+};
+
+
+
+//? DB CLEANING METHODS
+async function cleanCollections() {
+  await ProductCategory.deleteMany({}); // Kategorileri temizler
+  await Product.deleteMany({}); // Urunleri temizler
+  await User.deleteMany({}); // Kullanıcıları temizler
 }
-
-
-
-
-const populateUsers=async()=>{
-(await getDummyUsers()).forEach(async (user) => {
-  await User.create({...user});
-})
-
-  
-    // await User.create({...dummyUsers[0]});
-    
-}
-
-//? ADMIN USER ADDING METHOD
-
-
-
-
-
-//? DB CLEANING METHODS 
-  async function cleanCollections() {
-    await  ProductCategory.deleteMany({}) // Kategorileri temizler
-    await Product.deleteMany({}) // Urunleri temizler
-    await User.deleteMany({}) // Kullanıcıları temizler
-}
-
 
 module.exports = async () => {
-    
-await cleanCollections();
+  await cleanCollections();
 
-await getProductCategories();
-await populateCategories();
- 
-await getProducts();
-await populateProducts();
- 
-await getDummyUsers();
-await populateUsers()
+  await getProductCategories();
+  await populateCategories();
 
+  await getProducts();
+  await populateProducts();
 
-
-}
+  await getDummyUsers();
+  await populateUsers();
+};

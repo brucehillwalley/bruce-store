@@ -16,9 +16,17 @@ const HOST = process.env.HOST;
 /* DB connection  */
 require('./src/configs/dbConnection');
 
+/* ------------------------------------------------------- */
+// SessionCookies:
+// http://expressjs.com/en/resources/middleware/cookie-session.html
+// https://www.npmjs.com/package/cookie-session
+
 const session = require('cookie-session')
 app.use(session({
-  secret: process.env.SECRET_KEY,
+  secret: process.env.SECRET_KEY, //encryption key,
+  // maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+  //? burada global 24 saatlik cookie ayarı yaparsak oturum kapatıldığında da veri tutulur
+
 }))
 
 
