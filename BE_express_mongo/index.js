@@ -28,11 +28,29 @@ app.use(session({
   //? burada global 24 saatlik cookie ayarı yaparsak oturum kapatıldığında da veri tutulur
 
 }))
+//? Check logined user
+app.use(require('./src/middlewares/userControl'))
 
 
 
 app.all('/', (req, res) => {
-  res.send('WELCOME BRUCE STORE API ')
+    if(req.isLogin){
+      res.send({
+    error: false,
+    message: 'WELCOME BRUCE STORE API ',
+    session: req.session,
+    user: req.user
+  })
+    }else{
+      res.send({
+        error: false,
+        message: 'WELCOME BLOG API PROJECT',
+        session: req.session,
+    })
+    }
+
+  
+
 })
 
 
