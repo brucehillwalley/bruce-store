@@ -27,7 +27,7 @@ module.exports.AdminProductCategory = {
     });
   },
   read: async (req, res) => {
-    const data = await ProductCategory.find({ _id: req.params.categoryId });
+    const data = await ProductCategory.findOne({ _id: req.params.categoryId });
     res.status(202).send({
       error: false,
       data: data,
@@ -76,6 +76,7 @@ module.exports.AdminProduct = {
   },
   read: async (req, res) => {
     const data = await Product.findOne({ _id: req.params.productId });
+    console.log('data', data);
     res.status(202).send({
       error: false,
       data: data,

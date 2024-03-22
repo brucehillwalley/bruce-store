@@ -102,12 +102,12 @@ async function cleanCollections() {
 module.exports = async () => {
   await cleanCollections();
 
-  await getProductCategories();
-  await populateCategories();
+  // await getProductCategories();
+  // await populateCategories();
 
-  await getProducts();
-  await populateProducts();
+  // await getProducts();
+  // await populateProducts();
 
-  await getDummyUsers();
-  await populateUsers();
+  // await getDummyUsers();
+  // await populateUsers();
 };

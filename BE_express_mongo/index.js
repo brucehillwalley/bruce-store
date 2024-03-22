@@ -76,7 +76,7 @@ app.listen(PORT, () => {
 
 
 
-// require('./src/helpers/transferDummyData')() //dummy data transfer
+// require('./src/helpers/transferDummyData.v2')() //dummy data transfer
 
 
 // to return default values of db once in a day
@@ -84,10 +84,11 @@ const cron = require('cron');
 
 const returnDefaultValuesDB =new cron.CronJob('59 59 23 * * *', function() { //everyday at 23.59.59 
 
-  require('./src/helpers/transferDummyData')() //dummy data transfer
+    require('./src/helpers/transferDummyData.v2')() //dummy data transfer
 
-  console.log(" DB returned default values ");
+  // console.log(" DB returned default values ");
 }, null, true, 'Europe/Istanbul');
+// console.log(returnDefaultValuesDB); // nesnesi zamanı takip ediyor.
 
 // https://github.com/kelektiv/node-cron/tree/main/examples
 
