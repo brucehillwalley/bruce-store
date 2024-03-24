@@ -9,7 +9,8 @@ const passwordEncrypt = require("../helpers/passwordEncrypt");
 
 module.exports = {
   list: async (req, res) => {
-    const data = await User.find();
+    // const data = await User.find();
+    const data = await res.getModelList(User);
     res.status(200).send({
       error: false,
       data: data,

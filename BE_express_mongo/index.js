@@ -26,10 +26,14 @@ app.use(session({
   secret: process.env.SECRET_KEY, //encryption key,
   // maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
   //? burada global 24 saatlik cookie ayarı yaparsak oturum kapatıldığında da veri tutulur
-
 }))
+/* ------------------------------------------------------- */
+// Middlewares:
 //? Check logined user
 app.use(require('./src/middlewares/userControl'))
+
+// Filter, search, sort, pagination:
+app.use(require('./src/middlewares/queryHandler'))
 
 
 
