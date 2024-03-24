@@ -7,8 +7,8 @@ const router = require("express").Router();
 const User = require("../controllers/user.controller");
 
   //login -logout üstte olmalı yoksa /userId ile karışır hata verir
-router.post("/login",User.login)
-router.all("/logout",User.logout) //all ile tüm isteklerle logout yapılabilir
+router.post("/login",require("../middlewares/corsPost") ,User.login)
+router.post("/logout",require("../middlewares/corsPost"),User.logout) //all ile tüm isteklerle logout yapılabilir
 
 router
     .route("/")

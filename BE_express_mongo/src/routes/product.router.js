@@ -13,9 +13,9 @@ router
 router
   .route("/categories/:categoryId")
   .get(ProductCategory.read)
-  // .put(ProductCategory.update) // put patch aynı
-  // .patch(ProductCategory.update)
-  // .delete(ProductCategory.delete);
+  .put(ProductCategory.update) // put patch aynı
+  .patch(ProductCategory.update)
+  .delete(ProductCategory.delete);
   
 router
   .route("/")
@@ -24,9 +24,9 @@ router
 router
   .route("/:productId")
   .get(Product.read)
-  // .put(Product.update) // put patch aynı
-  // .patch(Product.update)
-  // .delete(Product.delete);
+  .put(Product.update) // put patch aynı
+  .patch(Product.update)
+  .delete(Product.delete);
 
 
 

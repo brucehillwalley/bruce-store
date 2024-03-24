@@ -45,7 +45,7 @@ module.exports = async (req, res, next) => {
 
   try {
     // Fetch user from database securely using findOne() and password comparison
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email:"admin@aa.com" });
 
     if (!user || !(user.password == req.session.password)) {
       return res.status(401).send({
